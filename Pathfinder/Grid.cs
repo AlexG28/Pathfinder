@@ -13,13 +13,7 @@ namespace Pathfinder
         PointF gridStart;
         int cellWidth;
 
-        Pen myPen = new Pen(Color.Black);
-        SolidBrush redBrush = new SolidBrush(Color.Red);
-
-       
-        bool drawCurrent = true;
-        int verticalCell;
-        int horizontalCell;
+        Pen myPen = new Pen(Color.Black);      
         
         int startLength = 10;
         public Grid(int x, int y, int width)
@@ -29,24 +23,8 @@ namespace Pathfinder
             this.cellWidth = width;
         }
 
-        public void click(int x, int y)
-        {
-            if (x == -1 && y == -1)
-            {
-                drawCurrent = false;
-            } else
-            {
-                drawCurrent = true; 
-
-
-                this.horizontalCell = (int)Math.Floor((x - gridStart.X) / 20);
-                this.verticalCell = (int)Math.Floor((y - gridStart.Y) / 20);
-            }
-        }
-
         public void Draw(PaintEventArgs e)
         {
-            
             Graphics g = e.Graphics;
 
             for (int i = 0; i <= startLength; i++)
@@ -56,14 +34,7 @@ namespace Pathfinder
 
                 //horizontal                               
                 g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 200, gridStart.Y + (i * cellWidth));
-            }
-
-            if (drawCurrent)
-            {
-
-                g.FillRectangle(redBrush, gridStart.X + (horizontalCell * 20) + 1, gridStart.Y + (verticalCell * 20) + 1, 19, 19);
-            }
+            }        
         }
-
     }
 }
