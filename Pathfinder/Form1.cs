@@ -14,50 +14,75 @@ namespace Pathfinder
     {
         
         Grid newGrid = new Grid(50, 50, 20);
-        StartSquare first = new StartSquare(new PointF(50, 50));
+        //StartSquare first = new StartSquare(new PointF(50, 50));
 
-        string currSelected = "Start";
+        //string currSelected = "Start";
+
+        
         
         public Form1()
         {
-            
+        
             InitializeComponent();
             this.Width = 500;
             this.Height = 500;
             
-            DropdownMenu.Text = "Start";
+           
             
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            newGrid.Draw(e);
-            first.Draw(e);       
+            newGrid.Draw(e);  
         }
 
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {   
-
+            /*
             // replace 50 with an actual variable 
             if (e.X >= 50 && 
                 e.X <= 50 + 200 &&
                 e.Y >= 50 &&
                 e.Y <= 50 + 200)
             {              
-                first.click(e.X, e.Y);
+                switch (currSelected)
+                {
+                    case "Start":
+                       
+                        break;
+
+                    case "target":
+
+                        break;
+
+                    case "wall":
+
+                        break;
+                    
+                    default:
+                        break;
+                }
+                
+                
+                //first.click(e.X, e.Y);
+            
+            
             } else
             {
-                first.click(-1, -1);
+                //first.click(-1, -1);
             }
             
             Refresh();
+            */
         }
 
-        private void DropdownMenu_SelectedValueChanged(object sender, EventArgs e)
-        {           
-            currSelected = DropdownMenu.Text;
+        private void start_button_Click(object sender, EventArgs e)
+        {
+            // start performing dijekstras 
+
+            newGrid.active();
         }
     }
 }

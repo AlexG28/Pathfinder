@@ -10,12 +10,41 @@ namespace Pathfinder
 {
     internal class Grid
     {
-        PointF gridStart;
-        int cellWidth;
 
+
+
+        PointF gridStart;
         Pen myPen = new Pen(Color.Black);      
-        
+        int cellWidth;
         int startLength = 10;
+
+
+        SolidBrush startSquare = new SolidBrush(Color.Red);
+        SolidBrush targetSquare = new SolidBrush(Color.Blue);
+        SolidBrush wallSquare = new SolidBrush(Color.Gray);
+
+        // 1 means start (red)
+        // 2 means target (blue)
+        // 0 means wall (gray)
+
+        static int[,] graph = new int[,]
+        {
+            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        };
+
+
+        
+
+        
         public Grid(int x, int y, int width)
         {
             this.gridStart.X = x;
@@ -34,7 +63,35 @@ namespace Pathfinder
 
                 //horizontal                               
                 g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 200, gridStart.Y + (i * cellWidth));
-            }        
+            }
+            
+            for(int i = 0; i < graph.GetLength(0); i++)
+            {
+                for (int j = 0; j < graph.GetLength(1); j++)
+                {
+                    if (graph[i, j] == 1)
+                    {
+                        // start square 
+                        e.Graphics.FillRectangle(startSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+
+                    } else if (graph[i, j] == 2)
+                    {
+                        // target square 
+                        e.Graphics.FillRectangle(targetSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                    } else if (graph[i, j] == 3)
+                    {
+                        // wall square 
+                        e.Graphics.FillRectangle(wallSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                    }
+                }
+            }
+        }
+
+        public void active()
+        {
+            Algorithm pathfinder = new Algorithm(graph);
+            
+            pathfinder.BFS(0, 0);
         }
     }
 }
