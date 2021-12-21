@@ -41,7 +41,7 @@ namespace Pathfinder
                 currX = temp[0];
                 currY = temp[1];
                 
-                if (contains1(currX, currX))
+                if (contains1(currX, currY) == true)
                 {
                     continue;
                 }
@@ -120,7 +120,6 @@ namespace Pathfinder
                 }
             }
             
-            // also need to add previous element to the list 
             visited.Add(new int[] { x, y });
 
             return true;
@@ -128,15 +127,16 @@ namespace Pathfinder
 
         bool contains1(int x, int y)
         {
-            foreach (int[] element in visited)
+            
+
+            if (visited.Any(p => p.SequenceEqual(new[] { x, y })))
             {
-                if (element[0] == x && element[1] == y)
-                {
-                    return true;
-                }
+                return true;
             }
 
+
             return false;
+            
         }
     }
 }
