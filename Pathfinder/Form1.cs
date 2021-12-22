@@ -79,10 +79,9 @@ namespace Pathfinder
         }
 
         private void start_button_Click(object sender, EventArgs e)
-        {
-            // start performing dijekstras 
-
+        {           
             newGrid.active();
+            Refresh();
         }
     }
 }

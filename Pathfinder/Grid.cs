@@ -22,10 +22,14 @@ namespace Pathfinder
         SolidBrush startSquare = new SolidBrush(Color.Red);
         SolidBrush targetSquare = new SolidBrush(Color.Blue);
         SolidBrush wallSquare = new SolidBrush(Color.Gray);
+        SolidBrush pathSquare = new SolidBrush(Color.Yellow);
+
+        List<int[]> path;
 
         // 1 means start (red)
         // 2 means target (blue)
         // 0 means wall (gray)
+        // 4 means path
 
         static int[,] graph = new int[,]
         {
@@ -33,8 +37,8 @@ namespace Pathfinder
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -82,6 +86,9 @@ namespace Pathfinder
                     {
                         // wall square 
                         e.Graphics.FillRectangle(wallSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                    } else if (graph[i, j] == 4)
+                    {
+                        e.Graphics.FillRectangle(pathSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
                     }
                 }
             }
@@ -91,13 +98,19 @@ namespace Pathfinder
         {
             Algorithm pathfinder = new Algorithm(graph);
             
-            List<int[]> path = pathfinder.BFS(0, 0, 5, 6);
+            path = pathfinder.BFS(0, 0, 4, 9);
 
+            path.RemoveAt(0);
+            path.RemoveAt(path.Count - 1);
 
             foreach (int[] pathitem in path)
             {
-                Console.WriteLine("-> [{0},{1}]", pathitem[0], pathitem[1]);
+                graph[pathitem[0], pathitem[1]] = 4;
+                
+                //Console.WriteLine("-> [{0},{1}]", pathitem[0], pathitem[1]);
             }
+
+            //Console.WriteLine("done");
         }
     }
 }
