@@ -19,6 +19,8 @@ namespace Pathfinder
         int startLength = 10;
 
 
+        int destinationX, destinationY;
+
         SolidBrush startSquare = new SolidBrush(Color.Red);
         SolidBrush targetSquare = new SolidBrush(Color.Blue);
         SolidBrush wallSquare = new SolidBrush(Color.Gray);
@@ -33,11 +35,11 @@ namespace Pathfinder
 
         static int[,] graph = new int[,]
         {
-            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -45,8 +47,6 @@ namespace Pathfinder
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
 
-
-        
 
         
         public Grid(int x, int y, int width)
@@ -94,11 +94,23 @@ namespace Pathfinder
             }
         }
 
-        public void active()
+
+        public void addTarget(int x, int y, int type)
+        {         
+
+            destinationX = (int)((x - gridStart.X) / 20);
+            destinationY = (int)((y - gridStart.Y) / 20);
+
+            graph[destinationY, destinationX] = type;
+
+        }
+
+
+        public void findPath()
         {
             Algorithm pathfinder = new Algorithm(graph);
-            
-            path = pathfinder.BFS(0, 0, 4, 9);
+
+            path = pathfinder.BFS(0, 0, destinationY, destinationX);
 
             path.RemoveAt(0);
             path.RemoveAt(path.Count - 1);
@@ -106,11 +118,26 @@ namespace Pathfinder
             foreach (int[] pathitem in path)
             {
                 graph[pathitem[0], pathitem[1]] = 4;
-                
-                //Console.WriteLine("-> [{0},{1}]", pathitem[0], pathitem[1]);
-            }
+            } 
+        }
 
-            //Console.WriteLine("done");
+        public void clear()
+        {
+            graph = new int[,]
+            {
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
+
+            
         }
     }
 }

@@ -51,11 +51,11 @@ namespace Pathfinder
 
                 if (!checkCell(currX, currY))
                 {
-                    break;
+                    continue;
                 }
             }
-
-            this.printPath(5, 6);
+            
+            Console.Write("hello hahahhahahahah");
 
             List<int[]> output = this.printPath(destX, destY);
 
@@ -151,7 +151,7 @@ namespace Pathfinder
                 inQueue = true;
             }
 
-            if (inVisited || inQueue) // maybe change this to and ??????
+            if ((inVisited || inQueue) || graph[x, y] == 3) // maybe change this to and ??????
             {
                 return true;
             } else
@@ -159,7 +159,7 @@ namespace Pathfinder
                 return false;
             }
 
-            
+
             /*
             if (visited.Any(p => p.SequenceEqual(new[] { x, y })))
             {
@@ -183,10 +183,15 @@ namespace Pathfinder
             int[] temp;
             int[] temp2;
             
+            foreach (var pair in previousElements)
+            {
+                Console.WriteLine("The previous of [ {0}, {1} ] is [ {2}, {3} ]", pair.Key[0], pair.Key[1], pair.Value[0], pair.Value[1]);
+            }
+
             while (previousExists)
             {
                 temp2 = path[path.Count - 1];
-                
+
                 if (temp2[0] == 0 && temp2[1] == 0)
                 {
                     Console.WriteLine("Done????????");
@@ -194,13 +199,16 @@ namespace Pathfinder
                     return path;
                 }
 
-                previousElements.TryGetValue(temp2, out temp);
+                if (!previousElements.TryGetValue(temp2, out temp))
+                {
+                    Console.WriteLine("Not good");
+
+                }
                 path.Add(temp);
                
             }
 
-            return path;
-            
+            return path;  
         }
     }
 
