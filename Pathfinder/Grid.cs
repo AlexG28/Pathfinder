@@ -91,7 +91,13 @@ namespace Pathfinder
         {
             Algorithm pathfinder = new Algorithm(graph);
             
-            pathfinder.BFS(0, 0);
+            List<int[]> path = pathfinder.BFS(0, 0, 5, 6);
+
+
+            foreach (int[] pathitem in path)
+            {
+                Console.WriteLine("-> [{0},{1}]", pathitem[0], pathitem[1]);
+            }
         }
     }
 }
