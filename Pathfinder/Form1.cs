@@ -12,19 +12,19 @@ namespace Pathfinder
 {
     public partial class Form1 : Form
     {
-        
-        Grid newGrid = new Grid(50, 50, 20);
-        //StartSquare first = new StartSquare(new PointF(50, 50));
+
+        //int squaresX = 30;
+        //int squaresY = 30;
+
+        Grid newGrid = new Grid(150, 50, 20); // grid starts at 100,100     each square is 20px by 20px
 
         string currSelected = "Start";
-
-        
         
         public Form1()
         {
             InitializeComponent();
-            this.Width = 500;
-            this.Height = 500;       
+            this.Width = 1600;
+            this.Height = 900;       
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -38,30 +38,26 @@ namespace Pathfinder
         {   
             
             // replace 50 with an actual variable 
-            if (e.X >= 50 && 
-                e.X <= 50 + 200 &&
-                e.Y >= 50 &&
-                e.Y <= 50 + 200)
-            {                               
-                //first.click(e.X, e.Y);
-
+            if (e.X >= 151 && 
+                e.X <= 749 && // 150 + (30 * 20)
+                e.Y >= 51 &&
+                e.Y <= 649) // 50 + (20 * 30)
+            {                                             
                 if (currSelected == "Start")
                 {
-                    newGrid.addTarget(e.X, e.Y, 1);
+                    newGrid.addSquare(e.X, e.Y, 1);
 
                 } else if (currSelected == "Target")
                 {
-                    newGrid.addTarget(e.X, e.Y, 2);
+                    newGrid.addSquare(e.X, e.Y, 2);
 
                 } else if (currSelected == "Wall")
                 {
-                    newGrid.addTarget(e.X, e.Y, 3);
+                    newGrid.addSquare(e.X, e.Y, 3);
                 }
 
                 Refresh();
-            } 
-            
-            //Refresh();
+            }            
         }
 
         private void start_button_Click(object sender, EventArgs e)

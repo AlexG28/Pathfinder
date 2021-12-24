@@ -36,7 +36,7 @@
             // start_button
             // 
             this.start_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.start_button.Location = new System.Drawing.Point(12, 12);
+            this.start_button.Location = new System.Drawing.Point(24, 38);
             this.start_button.Name = "start_button";
             this.start_button.Size = new System.Drawing.Size(71, 37);
             this.start_button.TabIndex = 0;
@@ -51,7 +51,7 @@
             "Start",
             "Target",
             "Wall"});
-            this.type.Location = new System.Drawing.Point(289, 28);
+            this.type.Location = new System.Drawing.Point(3, 129);
             this.type.Name = "type";
             this.type.Size = new System.Drawing.Size(121, 21);
             this.type.TabIndex = 1;
@@ -60,7 +60,7 @@
             // btn_clear
             // 
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(289, 98);
+            this.btn_clear.Location = new System.Drawing.Point(3, 81);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(121, 32);
             this.btn_clear.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 620);
+            this.ClientSize = new System.Drawing.Size(1584, 861);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.type);
             this.Controls.Add(this.start_button);

@@ -10,13 +10,10 @@ namespace Pathfinder
 {
     internal class Grid
     {
-
-
-
         PointF gridStart;
         Pen myPen = new Pen(Color.Black);      
         int cellWidth;
-        int startLength = 10;
+        int startLength = 30;
 
 
         int destinationX, destinationY;
@@ -34,6 +31,7 @@ namespace Pathfinder
         // 0 means wall (gray)
         // 4 means path
 
+        /*
         static int[,] graph = new int[,]
         {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -48,6 +46,12 @@ namespace Pathfinder
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
 
+        */
+
+        int[,] graph = new int[30, 30];
+        
+
+
 
         
         public Grid(int x, int y, int width)
@@ -55,6 +59,15 @@ namespace Pathfinder
             this.gridStart.X = x;
             this.gridStart.Y = y;
             this.cellWidth = width;
+
+            for (int i = 0; i < 30; i++)
+            {
+                for (int j = 0; j < 30; j++)
+                {
+                    graph[i, j] = 0;
+                }
+            }
+            
         }
 
         public void Draw(PaintEventArgs e)
@@ -64,10 +77,10 @@ namespace Pathfinder
             for (int i = 0; i <= startLength; i++)
             {
                 //vertical    
-                g.DrawLine(myPen, gridStart.X + (i * cellWidth), gridStart.Y, gridStart.X + (i * cellWidth), gridStart.Y + 200);
+                g.DrawLine(myPen, gridStart.X + (i * cellWidth), gridStart.Y, gridStart.X + (i * cellWidth), gridStart.Y + 600);
 
                 //horizontal                               
-                g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 200, gridStart.Y + (i * cellWidth));
+                g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 600, gridStart.Y + (i * cellWidth));
             }
             
             for(int i = 0; i < graph.GetLength(0); i++)
@@ -76,35 +89,28 @@ namespace Pathfinder
                 {
                     if (graph[i, j] == 1)
                     {
-                        // start square 
-                        e.Graphics.FillRectangle(startSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
-
+                        // start square                      
+                        e.Graphics.FillRectangle(startSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);                     
                     } else if (graph[i, j] == 2)
                     {
                         // target square 
-                        e.Graphics.FillRectangle(targetSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                        e.Graphics.FillRectangle(targetSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
                     } else if (graph[i, j] == 3)
                     {
                         // wall square 
-                        e.Graphics.FillRectangle(wallSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                        e.Graphics.FillRectangle(wallSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
                     } else if (graph[i, j] == 4)
                     {
-                        e.Graphics.FillRectangle(pathSquare, gridStart.Y + (j * 20) + 1, gridStart.X + (i * 20) + 1, 19, 19);
+                        // path square
+                        e.Graphics.FillRectangle(pathSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
                     }
                 }
             }
         }
 
 
-        public void addTarget(int x, int y, int type)
+        public void addSquare(int x, int y, int type)
         {         
-            //destinationX = (int)((x - gridStart.X) / 20);
-            //destinationY = (int)((y - gridStart.Y) / 20);
-
-            //graph[destinationY, destinationX] = type;
-
-            /////////////////////////////////////////
-
             int a, b;
             a = (int)((x - gridStart.X) / 20);
             b = (int)((y - gridStart.Y) / 20);
@@ -141,21 +147,13 @@ namespace Pathfinder
 
         public void clear()
         {
-            graph = new int[,]
+            for (int i = 0; i < 30; i++)
             {
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-            };
-
-            
+                for (int j = 0; j < 30; j++)
+                {
+                    graph[i, j] = 0;
+                }
+            }
         }
     }
 }

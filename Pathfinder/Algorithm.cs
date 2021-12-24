@@ -39,12 +39,11 @@ namespace Pathfinder
             
             while (cellQueue.Count > 0)
             {
-
                 temp = cellQueue.Dequeue();
                 currX = temp[0];
                 currY = temp[1];
                 
-                if (contains1(currX, currY) == true)
+                if (validCell(currX, currY) == true)
                 {
                     continue;
                 }
@@ -74,14 +73,14 @@ namespace Pathfinder
 
             if (x == 0)
             {
-                if (!contains1(x + 1, y))
+                if (!validCell(x + 1, y))
                 {
                     this.cellQueue.Enqueue(new [] { x + 1, y });
                     this.previousElements.Add(new int[] { x + 1, y }, new int[] { x, y });
                 }
             } else if (x == dimension - 1)
             {
-                if (!contains1(x - 1, y))
+                if (!validCell(x - 1, y))
                 {
                     this.cellQueue.Enqueue(new[] { x - 1, y });
                     this.previousElements.Add(new int[] { x - 1, y }, new int[] { x, y });
@@ -89,12 +88,12 @@ namespace Pathfinder
             } else
             {
 
-                if (!contains1(x + 1, y))
+                if (!validCell(x + 1, y))
                 {
                     this.cellQueue.Enqueue(new[] { x + 1, y });
                     this.previousElements.Add(new int[] { x + 1, y }, new int[] { x, y });
                 }
-                if (!contains1(x - 1, y))
+                if (!validCell(x - 1, y))
                 {
                     this.cellQueue.Enqueue(new[] { x - 1, y });
                     this.previousElements.Add(new int[] { x - 1, y }, new int[] { x, y });
@@ -104,26 +103,26 @@ namespace Pathfinder
 
             if (y == 0)
             {
-                if (!contains1(x, y + 1))
+                if (!validCell(x, y + 1))
                 {
                     this.cellQueue.Enqueue(new[] { x, y + 1 });
                     this.previousElements.Add(new int[] { x, y + 1}, new int[] { x, y });
                 }
             } else if (y == dimension - 1)
             {
-                if (!contains1(x, y - 1))
+                if (!validCell(x, y - 1))
                 {
                     this.cellQueue.Enqueue(new[] { x, y - 1 });
                     this.previousElements.Add(new int[] { x, y - 1 }, new int[] { x, y });
                 }
             } else
             {
-                if (!contains1(x, y + 1))
+                if (!validCell(x, y + 1))
                 {
                     this.cellQueue.Enqueue(new[] { x, y + 1 });
                     this.previousElements.Add(new int[] { x, y + 1 }, new int[] { x, y });
                 }
-                if (!contains1(x, y - 1))
+                if (!validCell(x, y - 1))
                 {
                     this.cellQueue.Enqueue(new[] { x, y - 1 });
                     this.previousElements.Add(new int[] { x, y - 1 }, new int[] { x, y });
@@ -135,7 +134,7 @@ namespace Pathfinder
             return true;
         }
 
-        bool contains1(int x, int y)
+        bool validCell(int x, int y)
         {
             
             bool inVisited = false;
@@ -151,24 +150,13 @@ namespace Pathfinder
                 inQueue = true;
             }
 
-            if ((inVisited || inQueue) || graph[x, y] == 3) // maybe change this to and ??????
+            if ((inVisited || inQueue) || graph[x, y] == 3) 
             {
                 return true;
             } else
             {
                 return false;
             }
-
-
-            /*
-            if (visited.Any(p => p.SequenceEqual(new[] { x, y })))
-            {
-                return true;
-            }
-
-            return false;
-            */
-
         }
 
 
@@ -183,10 +171,12 @@ namespace Pathfinder
             int[] temp;
             int[] temp2;
             
+            /*
             foreach (var pair in previousElements)
             {
                 Console.WriteLine("The previous of [ {0}, {1} ] is [ {2}, {3} ]", pair.Key[0], pair.Key[1], pair.Value[0], pair.Value[1]);
             }
+            */
 
             while (previousExists)
             {
