@@ -57,7 +57,7 @@ namespace Pathfinder
             
             Console.Write("hello hahahhahahahah");
 
-            List<int[]> output = this.printPath(destX, destY);
+            List<int[]> output = this.printPath(startX, startY, destX, destY);
 
             return output;
 
@@ -172,7 +172,7 @@ namespace Pathfinder
         }
 
 
-        public List<int[]> printPath(int x, int y)
+        public List<int[]> printPath(int sx, int sy, int x, int y)
         {
             bool previousExists = true;
 
@@ -192,7 +192,7 @@ namespace Pathfinder
             {
                 temp2 = path[path.Count - 1];
 
-                if (temp2[0] == 0 && temp2[1] == 0)
+                if (temp2[0] == sx && temp2[1] == sy)
                 {
                     Console.WriteLine("Done????????");
                     path.Reverse();

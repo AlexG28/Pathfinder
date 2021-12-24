@@ -20,6 +20,7 @@ namespace Pathfinder
 
 
         int destinationX, destinationY;
+        int startX, startY;
 
         SolidBrush startSquare = new SolidBrush(Color.Red);
         SolidBrush targetSquare = new SolidBrush(Color.Blue);
@@ -97,12 +98,29 @@ namespace Pathfinder
 
         public void addTarget(int x, int y, int type)
         {         
+            //destinationX = (int)((x - gridStart.X) / 20);
+            //destinationY = (int)((y - gridStart.Y) / 20);
 
-            destinationX = (int)((x - gridStart.X) / 20);
-            destinationY = (int)((y - gridStart.Y) / 20);
+            //graph[destinationY, destinationX] = type;
 
-            graph[destinationY, destinationX] = type;
+            /////////////////////////////////////////
 
+            int a, b;
+            a = (int)((x - gridStart.X) / 20);
+            b = (int)((y - gridStart.Y) / 20);
+
+            if (type == 1)
+            {
+                destinationX = a;
+                destinationY = b;
+
+            } else if (type == 2)
+            {
+                startX = a;
+                startY = b;
+            }
+
+            graph[b, a] = type;
         }
 
 
@@ -110,7 +128,7 @@ namespace Pathfinder
         {
             Algorithm pathfinder = new Algorithm(graph);
 
-            path = pathfinder.BFS(0, 0, destinationY, destinationX);
+            path = pathfinder.BFS(startY, startX, destinationY, destinationX);
 
             path.RemoveAt(0);
             path.RemoveAt(path.Count - 1);
