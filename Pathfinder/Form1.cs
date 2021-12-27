@@ -19,12 +19,24 @@ namespace Pathfinder
         Grid newGrid = new Grid(150, 50, 20); // grid starts at 100,100     each square is 20px by 20px
 
         string currSelected = "Start";
+
+
+
+
         
         public Form1()
         {
             InitializeComponent();
-            this.Width = 900;
-            this.Height = 800;       
+            this.Width = 1600;
+            this.Height = 900;          
+
+            Bitmap surface = new Bitmap(300, 300);
+            Graphics GFX = Graphics.FromImage(surface);
+
+            //GFX.FillRectangle(Brushes.Red, 50, 50, 100, 100);
+            GFX.FillEllipse(Brushes.Red, 50, 50, 100, 150);
+
+            PB_bitmapTest.Image = surface;
         }
 
         protected override void OnPaint(PaintEventArgs e)

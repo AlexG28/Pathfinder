@@ -31,6 +31,8 @@
             this.start_button = new System.Windows.Forms.Button();
             this.type = new System.Windows.Forms.ComboBox();
             this.btn_clear = new System.Windows.Forms.Button();
+            this.PB_bitmapTest = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_bitmapTest)).BeginInit();
             this.SuspendLayout();
             // 
             // start_button
@@ -68,17 +70,27 @@
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
+            // PB_bitmapTest
+            // 
+            this.PB_bitmapTest.Location = new System.Drawing.Point(1181, 176);
+            this.PB_bitmapTest.Name = "PB_bitmapTest";
+            this.PB_bitmapTest.Size = new System.Drawing.Size(300, 300);
+            this.PB_bitmapTest.TabIndex = 3;
+            this.PB_bitmapTest.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.Controls.Add(this.PB_bitmapTest);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.type);
             this.Controls.Add(this.start_button);
             this.Name = "Form1";
             this.Text = "Form1";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_bitmapTest)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -89,6 +101,7 @@
         private System.Windows.Forms.Button start_button;
         private System.Windows.Forms.ComboBox type;
         private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.PictureBox PB_bitmapTest;
     }
 }
 
