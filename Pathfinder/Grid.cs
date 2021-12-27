@@ -26,6 +26,8 @@ namespace Pathfinder
 
         List<int[]> path;
 
+       
+
         // 1 means start (red)
         // 2 means target (blue)
         // 0 means wall (gray)
@@ -66,14 +68,14 @@ namespace Pathfinder
                 {
                     graph[i, j] = 0;
                 }
-            }
-            
+            }        
         }
 
         public void Draw(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
 
+            
             for (int i = 0; i <= startLength; i++)
             {
                 //vertical    
@@ -81,7 +83,7 @@ namespace Pathfinder
 
                 //horizontal                               
                 g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 600, gridStart.Y + (i * cellWidth));
-            }
+            }            
             
             for(int i = 0; i < graph.GetLength(0); i++)
             {

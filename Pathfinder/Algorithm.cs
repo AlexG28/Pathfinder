@@ -43,6 +43,13 @@ namespace Pathfinder
                 currX = temp[0];
                 currY = temp[1];
                 
+                /*
+                if (graph[currX, currY] == 2)
+                {
+                    break;
+                }
+                */
+
                 if (validCell(currX, currY) == true)
                 {
                     continue;

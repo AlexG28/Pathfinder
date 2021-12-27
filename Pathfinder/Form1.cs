@@ -23,8 +23,8 @@ namespace Pathfinder
         public Form1()
         {
             InitializeComponent();
-            this.Width = 1600;
-            this.Height = 900;       
+            this.Width = 900;
+            this.Height = 800;       
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -39,9 +39,9 @@ namespace Pathfinder
             
             // replace 50 with an actual variable 
             if (e.X >= 151 && 
-                e.X <= 749 && // 150 + (30 * 20)
+                e.X <= 749 && // 150 + (30 * 20) - 1
                 e.Y >= 51 &&
-                e.Y <= 649) // 50 + (20 * 30)
+                e.Y <= 649) // 50 + (20 * 30) - 1
             {                                             
                 if (currSelected == "Start")
                 {
