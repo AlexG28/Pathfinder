@@ -21,20 +21,21 @@ namespace Pathfinder
         string currSelected = "Start";
 
 
-
-
+        int counter;
+        Graphics GFX;
+        Bitmap surface;
         
         public Form1()
         {
             InitializeComponent();
             this.Width = 1600;
-            this.Height = 900;          
+            this.Height = 900;
 
-            Bitmap surface = new Bitmap(300, 300);
-            Graphics GFX = Graphics.FromImage(surface);
+            counter = 0;
 
-            //GFX.FillRectangle(Brushes.Red, 50, 50, 100, 100);
-            GFX.FillEllipse(Brushes.Red, 50, 50, 100, 150);
+            surface = new Bitmap(300, 300);
+            GFX = Graphics.FromImage(surface);
+            
 
             PB_bitmapTest.Image = surface;
         }
@@ -88,6 +89,17 @@ namespace Pathfinder
         {
             newGrid.clear();
             Refresh();
+        }
+
+        private void btn_test1_Click(object sender, EventArgs e)
+        {
+            counter++;
+            for(int i = 0; i < counter; i++)
+            {
+                GFX.DrawLine(Pens.Black, 10, 10 + (i * 10), 10, 20 + (i * 10));
+            }
+
+            PB_bitmapTest.Image = surface;
         }
     }
 }
