@@ -11,15 +11,10 @@ using System.Windows.Forms;
 namespace Pathfinder
 {
     public partial class Form1 : Form
-    {
-
-        //int squaresX = 30;
-        //int squaresY = 30;
-
+    {      
         Grid newGrid = new Grid(150, 50, 20); // grid starts at 100,100     each square is 20px by 20px
 
         string currSelected = "Start";
-
 
         int counter;
         Graphics GFX;
@@ -35,7 +30,6 @@ namespace Pathfinder
 
             surface = new Bitmap(300, 300);
             GFX = Graphics.FromImage(surface);
-            
 
             PB_bitmapTest.Image = surface;
         }
@@ -93,6 +87,8 @@ namespace Pathfinder
 
         private void btn_test1_Click(object sender, EventArgs e)
         {
+            
+            /*
             counter++;
             for(int i = 0; i < counter; i++)
             {
@@ -100,6 +96,9 @@ namespace Pathfinder
             }
 
             PB_bitmapTest.Image = surface;
+            */
+
+            PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
         }
     }
 }

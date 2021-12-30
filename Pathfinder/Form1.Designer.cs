@@ -73,9 +73,9 @@
             // 
             // PB_bitmapTest
             // 
-            this.PB_bitmapTest.Location = new System.Drawing.Point(1181, 176);
+            this.PB_bitmapTest.Location = new System.Drawing.Point(1113, 53);
             this.PB_bitmapTest.Name = "PB_bitmapTest";
-            this.PB_bitmapTest.Size = new System.Drawing.Size(300, 300);
+            this.PB_bitmapTest.Size = new System.Drawing.Size(401, 401);
             this.PB_bitmapTest.TabIndex = 3;
             this.PB_bitmapTest.TabStop = false;
             // 

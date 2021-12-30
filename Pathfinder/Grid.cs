@@ -26,8 +26,6 @@ namespace Pathfinder
 
         List<int[]> path;
 
-       
-
         // 1 means start (red)
         // 2 means target (blue)
         // 0 means wall (gray)
@@ -57,7 +55,7 @@ namespace Pathfinder
 
         
         public Grid(int x, int y, int width)
-        {
+        {         
             this.gridStart.X = x;
             this.gridStart.Y = y;
             this.cellWidth = width;
@@ -70,6 +68,21 @@ namespace Pathfinder
                 }
             }        
         }
+
+        public Bitmap testDraw(Bitmap surface, Graphics g)
+        {
+            for (int i = 0; i <= 20; i++)
+            {
+                // horizontal
+                g.DrawLine(myPen, 0, (i * 20), 400, (i * 20));
+                
+                //vertical
+                g.DrawLine(myPen, (i * 20), 0, (i * 20), 400);
+            }
+
+            return surface;
+        }
+
 
         public void Draw(PaintEventArgs e)
         {
