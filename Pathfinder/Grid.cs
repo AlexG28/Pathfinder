@@ -83,6 +83,39 @@ namespace Pathfinder
             return surface;
         }
 
+        public Bitmap addSquare1(Bitmap surface, Graphics g, int x, int y, int type)
+        {
+            int a, b;
+            a = (int)(x / 20);
+            b = (int)(y / 20);
+
+            if (type == 1)
+            {
+                destinationX = a;
+                destinationY = b;
+
+                g.FillRectangle(startSquare, (a * 20) + 1, (b * 20) + 1, 19, 19);
+            }
+            else if (type == 2)
+            {
+                startX = a;
+                startY = b;
+
+                g.FillRectangle(targetSquare, (a * 20) + 1, (b * 20) + 1, 19, 19);
+            } else if (type == 3)
+            {
+                g.FillRectangle(wallSquare, (a * 20) + 1, (b * 20) + 1, 19, 19);
+            }
+
+            //potentially add if type == 4 for path 
+
+            graph[b, a] = type;
+
+            return surface;
+        }
+
+        
+
 
         public void Draw(PaintEventArgs e)
         {

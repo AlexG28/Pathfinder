@@ -73,11 +73,12 @@
             // 
             // PB_bitmapTest
             // 
-            this.PB_bitmapTest.Location = new System.Drawing.Point(1113, 53);
+            this.PB_bitmapTest.Location = new System.Drawing.Point(1114, 52);
             this.PB_bitmapTest.Name = "PB_bitmapTest";
             this.PB_bitmapTest.Size = new System.Drawing.Size(401, 401);
             this.PB_bitmapTest.TabIndex = 3;
             this.PB_bitmapTest.TabStop = false;
+            this.PB_bitmapTest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_bitmapTest_MouseDown);
             // 
             // btn_test1
             // 

@@ -28,7 +28,7 @@ namespace Pathfinder
 
             counter = 0;
 
-            surface = new Bitmap(300, 300);
+            surface = new Bitmap(405, 405);
             GFX = Graphics.FromImage(surface);
 
             PB_bitmapTest.Image = surface;
@@ -99,6 +99,29 @@ namespace Pathfinder
             */
 
             PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
+        }
+
+        private void PB_bitmapTest_MouseDown(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("The horizontal is: " + e.X.ToString());
+            Console.WriteLine("The vertical is: " + e.Y.ToString());
+
+            if (currSelected == "Start")
+            {
+                //newGrid.addSquare(e.X, e.Y, 1);
+                PB_bitmapTest.Image = newGrid.addSquare1(surface, GFX, e.X, e.Y, 1);
+
+            }
+            else if (currSelected == "Target")
+            {
+                //newGrid.addSquare(e.X, e.Y, 2);
+                PB_bitmapTest.Image = newGrid.addSquare1(surface, GFX, e.X, e.Y, 2);
+            }
+            else if (currSelected == "Wall")
+            {
+                //newGrid.addSquare(e.X, e.Y, 3);
+                PB_bitmapTest.Image = newGrid.addSquare1(surface, GFX, e.X, e.Y, 3);
+            }
         }
     }
 }
