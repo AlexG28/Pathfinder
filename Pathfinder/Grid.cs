@@ -209,7 +209,27 @@ namespace Pathfinder
             foreach (int[] pathitem in path)
             {
                 graph[pathitem[0], pathitem[1]] = 4;
+
             } 
+        }
+
+        public Bitmap findPath2(Bitmap surface, Graphics g)
+        {
+            Algorithm pathfinder = new Algorithm(graph);
+
+            path = pathfinder.BFS(startY, startX, destinationY, destinationX);
+
+            path.RemoveAt(0);
+            path.RemoveAt(path.Count - 1);
+
+            foreach(int[] pathitem in path)
+            {
+                graph[pathitem[0], pathitem[1]] = 4;              
+
+                g.FillRectangle(pathSquare, (pathitem[1] * 20) + 1, (pathitem[0] * 20) + 1, 19, 19);
+            }
+
+            return surface;
         }
 
         public void clear2()

@@ -72,7 +72,10 @@ namespace Pathfinder
         }
 
         private void start_button_Click(object sender, EventArgs e)
-        {           
+        {
+
+            PB_bitmapTest.Image = newGrid.findPath2(surface, GFX);
+
             newGrid.findPath();
             Refresh();
         }
