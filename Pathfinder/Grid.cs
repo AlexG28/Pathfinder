@@ -15,6 +15,8 @@ namespace Pathfinder
         int cellWidth;
         int startLength = 30;
 
+        bool startAvailable = true;
+        bool targetAvailable = true;
 
         int destinationX, destinationY;
         int startX, startY;
@@ -114,7 +116,20 @@ namespace Pathfinder
             return surface;
         }
 
-        
+        // work on this later
+
+        public bool checkIfAvailable(int type)
+        {
+            if (type == 1)
+            {
+                return startAvailable;
+            } else if (type == 2)
+            {
+                return targetAvailable;
+            } 
+
+            return true;
+        }
 
 
         public void Draw(PaintEventArgs e)
@@ -168,10 +183,14 @@ namespace Pathfinder
                 destinationX = a;
                 destinationY = b;
 
+                startAvailable = false;
+
             } else if (type == 2)
             {
                 startX = a;
                 startY = b;
+
+                targetAvailable = false;
             }
 
             graph[b, a] = type;
@@ -191,6 +210,11 @@ namespace Pathfinder
             {
                 graph[pathitem[0], pathitem[1]] = 4;
             } 
+        }
+
+        public void clear2()
+        {
+
         }
 
         public void clear()

@@ -15,6 +15,8 @@ namespace Pathfinder
         Grid newGrid = new Grid(150, 50, 20); // grid starts at 100,100     each square is 20px by 20px
 
         string currSelected = "Start";
+       
+
 
         int counter;
         Graphics GFX;
@@ -30,8 +32,10 @@ namespace Pathfinder
 
             surface = new Bitmap(405, 405);
             GFX = Graphics.FromImage(surface);
+            GFX.Clear(Color.White);
+            //PB_bitmapTest.Image = surface;
+            PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
 
-            PB_bitmapTest.Image = surface;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -80,37 +84,24 @@ namespace Pathfinder
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
-        {
+        {          
+            GFX.Clear(Color.White);
+            PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
+
             newGrid.clear();
             Refresh();
         }
-
-        private void btn_test1_Click(object sender, EventArgs e)
-        {
-            
-            /*
-            counter++;
-            for(int i = 0; i < counter; i++)
-            {
-                GFX.DrawLine(Pens.Black, 10, 10 + (i * 10), 10, 20 + (i * 10));
-            }
-
-            PB_bitmapTest.Image = surface;
-            */
-
-            PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
-        }
+       
 
         private void PB_bitmapTest_MouseDown(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("The horizontal is: " + e.X.ToString());
-            Console.WriteLine("The vertical is: " + e.Y.ToString());
+            //Console.WriteLine("The horizontal is: " + e.X.ToString());
+            //Console.WriteLine("The vertical is: " + e.Y.ToString());
 
             if (currSelected == "Start")
             {
                 //newGrid.addSquare(e.X, e.Y, 1);
                 PB_bitmapTest.Image = newGrid.addSquare1(surface, GFX, e.X, e.Y, 1);
-
             }
             else if (currSelected == "Target")
             {

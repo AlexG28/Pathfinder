@@ -32,7 +32,6 @@
             this.type = new System.Windows.Forms.ComboBox();
             this.btn_clear = new System.Windows.Forms.Button();
             this.PB_bitmapTest = new System.Windows.Forms.PictureBox();
-            this.btn_test1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PB_bitmapTest)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,22 +79,11 @@
             this.PB_bitmapTest.TabStop = false;
             this.PB_bitmapTest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_bitmapTest_MouseDown);
             // 
-            // btn_test1
-            // 
-            this.btn_test1.Location = new System.Drawing.Point(1251, 500);
-            this.btn_test1.Name = "btn_test1";
-            this.btn_test1.Size = new System.Drawing.Size(154, 45);
-            this.btn_test1.TabIndex = 4;
-            this.btn_test1.Text = "add line";
-            this.btn_test1.UseVisualStyleBackColor = true;
-            this.btn_test1.Click += new System.EventHandler(this.btn_test1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.btn_test1);
             this.Controls.Add(this.PB_bitmapTest);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.type);
@@ -115,7 +103,6 @@
         private System.Windows.Forms.ComboBox type;
         private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.PictureBox PB_bitmapTest;
-        private System.Windows.Forms.Button btn_test1;
     }
 }
 
