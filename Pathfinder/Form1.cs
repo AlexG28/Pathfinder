@@ -17,7 +17,6 @@ namespace Pathfinder
         string currSelected = "Start";
        
 
-
         int counter;
         Graphics GFX;
         Bitmap surface;
@@ -41,13 +40,13 @@ namespace Pathfinder
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            newGrid.Draw(e);  
+            //newGrid.Draw(e);  
         }
 
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {   
-            
+            /*
             // replace 50 with an actual variable 
             if (e.X >= 151 && 
                 e.X <= 749 && // 150 + (30 * 20) - 1
@@ -68,22 +67,21 @@ namespace Pathfinder
                 }
 
                 Refresh();
-            }            
+            } 
+            
+            */
         }
 
         private void start_button_Click(object sender, EventArgs e)
-        {
+        { 
 
-            PB_bitmapTest.Image = newGrid.findPath2(surface, GFX);
-
-            newGrid.findPath();
-            Refresh();
+            PB_bitmapTest.Image = newGrid.findPath2(surface, GFX);        
         }
 
         private void type_SelectedIndexChanged(object sender, EventArgs e)
         {
             currSelected = type.Text;
-            Console.WriteLine(currSelected);
+            //Console.WriteLine(currSelected);
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -91,8 +89,8 @@ namespace Pathfinder
             GFX.Clear(Color.White);
             PB_bitmapTest.Image = newGrid.testDraw(surface, GFX);
 
-            newGrid.clear();
-            Refresh();
+            newGrid.resetGraph();
+            //Refresh();
         }
        
 

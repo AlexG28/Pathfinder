@@ -178,12 +178,6 @@ namespace Pathfinder
             int[] temp;
             int[] temp2;
             
-            /*
-            foreach (var pair in previousElements)
-            {
-                Console.WriteLine("The previous of [ {0}, {1} ] is [ {2}, {3} ]", pair.Key[0], pair.Key[1], pair.Value[0], pair.Value[1]);
-            }
-            */
 
             while (previousExists)
             {
@@ -202,7 +196,6 @@ namespace Pathfinder
 
                 }
                 path.Add(temp);
-               
             }
 
             return path;  

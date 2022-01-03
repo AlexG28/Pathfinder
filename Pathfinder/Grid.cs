@@ -33,27 +33,8 @@ namespace Pathfinder
         // 0 means wall (gray)
         // 4 means path
 
-        /*
-        static int[,] graph = new int[,]
-        {
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-        };
-
-        */
-
-        int[,] graph = new int[30, 30];
         
-
-
+        int[,] graph = new int[20, 20];     
 
         
         public Grid(int x, int y, int width)
@@ -62,9 +43,11 @@ namespace Pathfinder
             this.gridStart.Y = y;
             this.cellWidth = width;
 
-            for (int i = 0; i < 30; i++)
+            //initialize graph and fill in the values
+
+            for (int i = 0; i < 20; i++)
             {
-                for (int j = 0; j < 30; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     graph[i, j] = 0;
                 }
@@ -116,8 +99,6 @@ namespace Pathfinder
             return surface;
         }
 
-        // work on this later
-
         public bool checkIfAvailable(int type)
         {
             if (type == 1)
@@ -129,88 +110,6 @@ namespace Pathfinder
             } 
 
             return true;
-        }
-
-
-        public void Draw(PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-
-            
-            for (int i = 0; i <= startLength; i++)
-            {
-                //vertical    
-                g.DrawLine(myPen, gridStart.X + (i * cellWidth), gridStart.Y, gridStart.X + (i * cellWidth), gridStart.Y + 600);
-
-                //horizontal                               
-                g.DrawLine(myPen, gridStart.X, gridStart.Y + (i * cellWidth), gridStart.X + 600, gridStart.Y + (i * cellWidth));
-            }            
-            
-            for(int i = 0; i < graph.GetLength(0); i++)
-            {
-                for (int j = 0; j < graph.GetLength(1); j++)
-                {
-                    if (graph[i, j] == 1)
-                    {
-                        // start square                      
-                        e.Graphics.FillRectangle(startSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);                     
-                    } else if (graph[i, j] == 2)
-                    {
-                        // target square 
-                        e.Graphics.FillRectangle(targetSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
-                    } else if (graph[i, j] == 3)
-                    {
-                        // wall square 
-                        e.Graphics.FillRectangle(wallSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
-                    } else if (graph[i, j] == 4)
-                    {
-                        // path square
-                        e.Graphics.FillRectangle(pathSquare, gridStart.X + (j * 20) + 1, gridStart.Y + (i * 20) + 1, 19, 19);
-                    }
-                }
-            }
-        }
-
-
-        public void addSquare(int x, int y, int type)
-        {         
-            int a, b;
-            a = (int)((x - gridStart.X) / 20);
-            b = (int)((y - gridStart.Y) / 20);
-
-            if (type == 1)
-            {
-                destinationX = a;
-                destinationY = b;
-
-                startAvailable = false;
-
-            } else if (type == 2)
-            {
-                startX = a;
-                startY = b;
-
-                targetAvailable = false;
-            }
-
-            graph[b, a] = type;
-        }
-
-
-        public void findPath()
-        {
-            Algorithm pathfinder = new Algorithm(graph);
-
-            path = pathfinder.BFS(startY, startX, destinationY, destinationX);
-
-            path.RemoveAt(0);
-            path.RemoveAt(path.Count - 1);
-
-            foreach (int[] pathitem in path)
-            {
-                graph[pathitem[0], pathitem[1]] = 4;
-
-            } 
         }
 
         public Bitmap findPath2(Bitmap surface, Graphics g)
@@ -232,16 +131,11 @@ namespace Pathfinder
             return surface;
         }
 
-        public void clear2()
+        public void resetGraph()
         {
-
-        }
-
-        public void clear()
-        {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
-                for (int j = 0; j < 30; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     graph[i, j] = 0;
                 }

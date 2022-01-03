@@ -72,7 +72,7 @@
             // 
             // PB_bitmapTest
             // 
-            this.PB_bitmapTest.Location = new System.Drawing.Point(1114, 52);
+            this.PB_bitmapTest.Location = new System.Drawing.Point(162, 22);
             this.PB_bitmapTest.Name = "PB_bitmapTest";
             this.PB_bitmapTest.Size = new System.Drawing.Size(401, 401);
             this.PB_bitmapTest.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.ClientSize = new System.Drawing.Size(827, 763);
             this.Controls.Add(this.PB_bitmapTest);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.type);
